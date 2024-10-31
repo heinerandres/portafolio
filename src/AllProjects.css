@@ -1,0 +1,136 @@
+.projects-page-wrapper {
+    display: flex;
+    justify-content: center;
+}
+.projects-list-wrapper {
+    width: 55%;
+    margin-top: 110px;
+    margin-bottom: 200px;
+}
+.titulos-wrapper {
+}
+.back-wrapper {
+    display: flex;
+    width: fit-content;
+    cursor: pointer;
+}
+.back-wrapper:hover .flecha-back-wrapper {
+    padding-left: 0px;
+}
+
+.back-wrapper span {
+    position: absolute;
+    margin-left: 35px;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(94 234 212 / 1);
+}
+.flecha-back-wrapper {
+    width: 12px;
+    padding-top: 2px;
+    padding-left: 10px;
+}
+.flecha-back-wrapper img {
+    width: 100%;
+}
+
+.titulo-pagina span {
+    font-size: 50px;
+    font-weight: bold;
+    color: rgb(226 232 240 / 1);
+}
+.header-wrapper-projects {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.header-projects-list {
+
+    display: flex;
+    width: 90%;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+.header-projects-list span {
+    color: rgb(226 232 240 / 1);
+    font-size: 18px;
+}
+
+.project- {
+    margin-left: 40px;
+}
+.made-at {
+    margin-left: 233px;
+}
+.built-with {
+    margin-left: 130px;
+}
+.project-list-item-wrapper {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid rgb(54, 61, 70);
+    padding: 23px 0px 15px 0px;
+}
+.project-list-item {
+    width: 90%;
+    display: flex;
+}
+.year-content {
+    padding-right: 38px;
+}
+.proyect-content {
+    color: rgb(226 232 240 / 1);
+    font-size: 18px;
+    width: 34%;
+}
+.made-at-content {
+    width: 22%;
+    padding-left: 13px;
+}
+
+.built-with-content {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+}
+
+@media screen and (max-width:1366px), screen and (max-height: 768px){
+    .projects-list-wrapper {
+        width: 70%;
+    }
+    .titulo-pagina span {
+        font-size: 45px;
+    }
+    .back-wrapper span {
+        font-size: 16px;
+    }
+    .header-projects-list span {
+        font-size: 16px;
+    }
+    .project-list-item {
+        font-size: 14px;
+    }
+    .made-at {
+        margin-left: 213px;
+    }
+    .built-with {
+        margin-left: 110px;
+    }
+}
+@media (max-width:480px){
+    .made-at {
+        display: none;
+    }
+    .built-with {
+        display: none;
+    }
+    .built-with-content {
+        display: none;
+    }
+    .made-at-content {
+        display: none;
+    }
+    .proyect-content {
+        width: 70%;
+    }
+}
