@@ -1,21 +1,33 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './App.css'
 import { useNavigate } from 'react-router-dom'
 
 export const Inicio = () => {
 
-  const [ scrollPosition, setScrollPosition ] = useState(0);
-
-  const [ minMax, setMinMax ] = useState({
-    min: 0,
-    max: 0,
-  });
+  const minMax = useRef({ min: 0, max: 0 });
 
   const [ windowDimensions, setWindowDimensions ] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
   });
 
+  const functionSetMinMax = () => {
+    if(windowDimensions.width == 1920 && windowDimensions.height <= 919){
+      minMax.current = { min: 429, max: 1204 };
+    }
+    else if(windowDimensions.width == 1366 && windowDimensions.height <= 768){
+      minMax.current = { min: 349, max: 1219 };
+    }
+    else if(windowDimensions.width == 1280 && windowDimensions.height <= 800){
+      minMax.current = { min: 387, max: 1222 };
+    }
+    else if(windowDimensions.width == 1280 && windowDimensions.height <= 1024){
+      minMax.current = { min: 400, max: 996 };
+    }
+    else if(windowDimensions.width == 1024 && windowDimensions.height <= 768){
+      minMax.current = { min: 377, max: 1267 };
+    }
+  }
   useEffect( () => {
     //resize de la pagina
     const handleResize = () => {
@@ -26,55 +38,23 @@ export const Inicio = () => {
     }
     window.addEventListener('resize', handleResize);
 
-
-
     //scroll para focus de la opcion
     window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
     document.getElementById("about").focus();
     
-
-    if(windowDimensions.width == 1920 && windowDimensions.height == 919){
-      setMinMax({
-        min: 550,
-        max: 1450,
-      })
-    }
-    else if(windowDimensions.width == 1366 && windowDimensions.height == 768){
-      setMinMax({
-        min: 448,
-        max: 1412,
-      })
-    }
-    else if(windowDimensions.width == 1280 && windowDimensions.height == 800){
-      setMinMax({
-        min: 501,
-        max: 1475,
-      })
-    }
-    else if(windowDimensions.width == 1280 && windowDimensions.height == 1024){
-      setMinMax({
-        min: 400,
-        max: 1251,
-      })
-    }
-    else if(windowDimensions.width == 1024 && windowDimensions.height == 768){
-      setMinMax({
-        min: 400,
-        max: 1306,
-      })
-    }
+    functionSetMinMax();
 
     const handleScroll = () => {
+      functionSetMinMax();
       const currentScroll = window.scrollY;
-      setScrollPosition(currentScroll);
-
-      if(currentScroll < minMax.min) {
+      if(currentScroll < minMax.current.min) {
         document.getElementById("about").focus();
       }
-      else if(currentScroll >= minMax.min && currentScroll < minMax.max){
+      else if(currentScroll >= minMax.current.min && currentScroll < minMax.current.max){
         document.getElementById("experience").focus();
       }
-      else if(currentScroll >= minMax.max){
+      
+      else if(currentScroll >= minMax.current.max){
         document.getElementById("projects").focus();
       }
     };
@@ -95,77 +75,78 @@ export const Inicio = () => {
 
   //onclick para cambiar scroll
   const toAbout = () => {
+    functionSetMinMax();
     window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
   };
-
   const toExperience = () => {
-    window.scrollTo({top: minMax.min, left: 0, behavior: 'smooth'});
+    functionSetMinMax();
+    window.scrollTo({top: minMax.current.min, left: 0, behavior: 'smooth'});
   }
-
   const toProjects = () => {
-    window.scrollTo({top: minMax.max, left: 0, behavior: 'smooth'});
+    functionSetMinMax();
+    window.scrollTo({top: minMax.current.max, left: 0, behavior: 'smooth'});
   };
 
-    const handleClick = (event) => {
-        if(event.target.src =="http://localhost:5173/img/git-oscuro.png")
-        {
-          window.open("https://github.com/heinerandres", "_blank", "noopener,noreferrer");
-          event.target.src="./img/git-claro.png";
-          const timer = setTimeout(() =>{
-            event.target.src="http://localhost:5173/img/git-oscuro.png";
-          }, 1500);
-        } 
-        if(event.target.src =="http://localhost:5173/img/in-oscuro.png")
-        {
-          window.open("https://www.linkedin.com/in/heinersolano/", "_blank", "noopener,noreferrer");
-          event.target.src="./img/in-claro.png";
-          const timer = setTimeout(() =>{
-            event.target.src="http://localhost:5173/img/in-oscuro.png";
-          }, 1500);
-        }
-          
-        if(event.target.src =="http://localhost:5173/img/telefono-oscuro.png") 
-        {
-          event.target.src="./img/telefono-claro.png";
-          document.getElementById("telefono").style.display = "block";
-          const timer = setTimeout(() =>{
-            document.getElementById("telefono").style.display = "none";
-            event.target.src="./img/telefono-oscuro.png";
-          }, 1500);
-        }
-          
-        if(event.target.src =="http://localhost:5173/img/correo-oscuro.png")
-        {
-          event.target.src="./img/correo-claro.png";
-          document.getElementById("correo").style.display = "block";
-          const timer = setTimeout(() =>{
-            document.getElementById("correo").style.display = "none";
-            event.target.src="./img/correo-oscuro.png";
-          }, 1500);
-        }
+  const handleClickSocials = (event) => {
+    if(event.target.src =="http://localhost:5173/img/git-oscuro.png")
+    {
+      window.open("https://github.com/heinerandres", "_blank", "noopener,noreferrer");
+      event.target.src="./img/git-claro.png";
+      const timer = setTimeout(() =>{
+        event.target.src="http://localhost:5173/img/git-oscuro.png";
+      }, 1500);
+    } 
+    if(event.target.src =="http://localhost:5173/img/in-oscuro.png")
+    {
+      window.open("https://www.linkedin.com/in/heinersolano/", "_blank", "noopener,noreferrer");
+      event.target.src="./img/in-claro.png";
+      const timer = setTimeout(() =>{
+        event.target.src="http://localhost:5173/img/in-oscuro.png";
+      }, 1500);
     }
-    const handleNovacomp = () => {
-      window.open("https://www.crnova.com/", "_blank", "noopener,noreferrer");
-    }
-
-    const handleGrupoBabel = () => {
-      window.open("https://babelgroup.com/", "_blank", "noopener,noreferrer");
-
-    }
-    const handleODS = () => {
-      window.open("https://www.linkedin.com/company/optimized-data-solutions/", "_blank", "noopener,noreferrer") ;
       
+    if(event.target.src =="http://localhost:5173/img/telefono-oscuro.png") 
+    {
+      event.target.src="./img/telefono-claro.png";
+      document.getElementById("telefono").style.display = "block";
+      const timer = setTimeout(() =>{
+        document.getElementById("telefono").style.display = "none";
+        event.target.src="./img/telefono-oscuro.png";
+      }, 1500);
     }
-    const handleSeidor = () => {
-      window.open("https://www.seidor.com/es-cr", "_blank", "noopener,noreferrer");
+      
+    if(event.target.src =="http://localhost:5173/img/correo-oscuro.png")
+    {
+      event.target.src="./img/correo-claro.png";
+      document.getElementById("correo").style.display = "block";
+      const timer = setTimeout(() =>{
+        document.getElementById("correo").style.display = "none";
+        event.target.src="./img/correo-oscuro.png";
+      }, 1500);
     }
+  }
+  const handleNovacomp = () => {
+    window.open("https://www.crnova.com/", "_blank", "noopener,noreferrer");
+  }
 
-    const handleHojaVida = () => {
-      window.open("./cv.pdf", "_blank");
-    }
-    const handleAmazon = () => {
-      window.open("https://ecommerce-backend-aafqbaf5baeddjad.canadacentral-01.azurewebsites.net/", "_blank");
-    }
+  const handleGrupoBabel = () => {
+    window.open("https://babelgroup.com/", "_blank", "noopener,noreferrer");
+
+  }
+  const handleODS = () => {
+    window.open("https://www.linkedin.com/company/optimized-data-solutions/", "_blank", "noopener,noreferrer") ;
+    
+  }
+  const handleSeidor = () => {
+    window.open("https://www.seidor.com/es-cr", "_blank", "noopener,noreferrer");
+  }
+
+  const handleHojaVida = () => {
+    window.open("./cv.pdf", "_blank");
+  }
+  const handleAmazon = () => {
+    window.open("https://ecommerce-backend-aafqbaf5baeddjad.canadacentral-01.azurewebsites.net/", "_blank");
+  }
   return (
     <>
       <div className="body-wrapper">
@@ -211,21 +192,21 @@ export const Inicio = () => {
             <div className="header-socials">
             <div className="wrapper-social">
                 <div 
-                  onClick={ handleClick } 
+                  onClick={ handleClickSocials } 
                   className='icon-social'>
                     <img className='ajustar' src="./img/git-oscuro.png"></img>
                 </div>
               </div>
               <div className="wrapper-social">
                 <div 
-                  onClick={ handleClick } 
+                  onClick={ handleClickSocials } 
                   className='icon-social'>
                     <img src="./img/in-oscuro.png"></img>
                 </div>
               </div>
               <div className="wrapper-social">
                 <div 
-                onClick={ handleClick } 
+                onClick={ handleClickSocials } 
                 className='icon-social'>
                   <img src="./img/telefono-oscuro.png"></img>
                 </div>
@@ -236,7 +217,7 @@ export const Inicio = () => {
               </div>
               <div className="wrapper-social">
                 <div 
-                    onClick={ handleClick } 
+                    onClick={ handleClickSocials } 
                     className="icon-social">
                   <img src="./img/correo-oscuro.png"></img>
                 </div>
@@ -317,7 +298,7 @@ export const Inicio = () => {
                   </div>
                   <div className='contenido-experiencia-wrapper'>
                     <p>
-                       Software factory's work develop tools to manage data. Web pages, databases, reports, shedules, appointments.
+                       Software factory's work, develop tools to manage data. Web pages, databases, reports, shedules, appointments.
                     </p>
                   </div>
                   <div className='tecnologias-wrapper'>

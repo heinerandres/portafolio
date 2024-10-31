@@ -355,6 +355,89 @@ main {
   line-height: .5;
 }
 
+@media (max-width:480px){
+  .body-wrapper{
+    display: block;
+  }
+  header{
+    position: initial;
+    display: block;
+    width: 100vw;
+    margin-left: 8%;
+    height: fit-content;
+  }
+  main{
+    width: 100vw;
+    margin-left: 0px;
+  }
+  .header-opciones {
+    display: none;
+  }
+  .header-socials {
+    margin-top: 10%;
+  }
+  .view-full-resume {
+    margin-left: 5%;
+  }
+  .view-full-projects {
+    margin-left: 5%;
+  }
+  .firma {
+    margin-left: 5%;
+  }
+  .parrafo-wrapper {
+    margin-left:8%;
+    text-align: justify;
+  }
+
+}
+
+@media screen and (max-width:1024px), screen and (max-height: 768px){
+  header { 
+    width: 45vw;
+  }
+  main {
+    margin-left: 45vw;
+    width: 55vw;
+  }
+  .header-wrapper {
+    width: 80%;
+  }
+  .parrafo-wrapper {
+    width: 85%;
+  }
+  .experience-wrapper {
+    width: 85%;
+  }
+  .project-wrapper {
+    width: 85%;
+  }
+  .projects-list-wrapper {
+    width: 85%;
+  }
+}
+@media screen and (max-width:1280px), screen and (max-height: 800px){
+  .header-wrapper {
+    width: 75%;
+  }
+  .parrafo-wrapper {
+    width: 75%;
+    margin-top: 15%;
+    font-size: 19px;
+    line-height: 1.4;
+    margin-left: 4%;
+  }
+  .experience-wrapper {
+    width: 80%;
+  }
+  .project-wrapper {
+    width: 80%;
+  }
+  .projects-list-wrapper {
+    width: 80%;
+  }
+}
+
 @media screen and (max-width:1366px), screen and (max-height: 768px){
   .header-wrapper {
     width: 70%;
@@ -415,90 +498,16 @@ main {
   .wrapper-social {
     height: 35px;
   }
-}
-
-@media screen and (max-width:1280px), screen and (max-height: 800px){
-  .header-wrapper {
-    width: 75%;
-  }
-  .parrafo-wrapper {
-    width: 75%;
-    margin-top: 15%;
-    font-size: 19px;
-    line-height: 1.4;
-    margin-left: 4%;
-  }
-  .experience-wrapper {
-    width: 80%;
-  }
-  .project-wrapper {
-    width: 80%;
-  }
-  .projects-list-wrapper {
-    width: 80%;
+  .proyect-content {
+    font-size: 14px;
+    width: 28%;
   }
 }
 
-@media screen and (max-width:1024px), screen and (max-height: 768px){
-  header { 
-    width: 45vw;
-  }
-  main {
-    margin-left: 45vw;
-    width: 55vw;
-  }
-  .header-wrapper {
-    width: 80%;
-  }
-  .parrafo-wrapper {
-    width: 85%;
-  }
-  .experience-wrapper {
-    width: 85%;
-  }
-  .project-wrapper {
-    width: 85%;
-  }
-  .projects-list-wrapper {
-    width: 85%;
-  }
-}
-@media (max-width:480px){
-  .body-wrapper{
-    display: block;
-  }
-  header{
-    position: initial;
-    display: block;
-    width: 100vw;
-    margin-left: 8%;
-    height: fit-content;
-  }
-  main{
-    width: 100vw;
-    margin-left: 0px;
-  }
-  .header-opciones {
-    display: none;
-  }
-  .header-socials {
-    margin-top: 10%;
-  }
-  .view-full-resume {
-    margin-left: 5%;
-  }
-  .view-full-projects {
-    margin-left: 5%;
-  }
-  .firma {
-    margin-left: 5%;
-  }
-  .parrafo-wrapper {
-    margin-left:8%;
-    text-align: justify;
-  }
 
-}
+
+
+
 
 /*
 1920 x 1080--listo
